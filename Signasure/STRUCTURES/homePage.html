@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignNaSure - Detection Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../DESIGNS/homePage.css">
+    <link rel="stylesheet" href="../DESIGNS/modal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="../FUNCTIONALITIES/homePage.js" defer></script>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-content">
+        <a href="./landingPage.html" class="logo">SignNaSure</a>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="./homePage.html">Analyze Signature</a></li>
+                <li><a href="./featuresPage.html">Features</a></li>
+                <li><a href="./howItWorksPage.html">How It Works</a></li>
+            </ul>
+        </nav>
+
+        <div id="nav-auth">
+            <a href="#" class="btn-outline open-sign-in">Sign In</a>
+        </div>
+    </div>
+</header>
+
+<section class="tool-section">
+    <div class="container">
+        <div class="section-header">
+            <h1>Try Our Detection Tool</h1>
+            <p>Upload two signatures to compare and receive instant analysis results.</p>
+        </div>
+
+        <div class="upload-grid">
+
+            <!-- ORIGINAL SIGNATURE -->
+            <div class="upload-card">
+                <h3>Original Signature</h3>
+                <div class="upload-box" id="originalBox">
+                    <input type="file" id="originalInput" accept="image/*" hidden>
+                    <div class="upload-content">
+                        <p>Drop your signature image here</p>
+                        <span>or click to browse</span>
+                        <button type="button">Choose file</button>
+                    </div>
+                    <img class="preview-image" id="originalPreview">
+                </div>
+            </div>
+
+            <!-- QUESTIONED SIGNATURE -->
+            <div class="upload-card">
+                <h3>Questioned Signature</h3>
+                <div class="upload-box" id="questionedBox">
+                    <input type="file" id="questionedInput" accept="image/*" hidden>
+                    <div class="upload-content">
+                        <p>Drop your signature image here</p>
+                        <span>or click to browse</span>
+                        <button type="button">Choose file</button>
+                    </div>
+                    <img class="preview-image" id="questionedPreview">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="analyze-wrapper">
+            <button class="analyze-btn" id="analyzeBtn">Analyze Signature</button>
+        </div>
+    </div>
+</section>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        
+        <div class="modal-card" id="signInModal">
+            <button class="close-btn">&times;</button>
+            <div class="modal-header">
+                <div class="logo-placeholder">
+                    <span style="font-weight: 700; font-size: 24px; color: #111;">SN</span>
+                </div>
+                <h2>Welcome Back</h2>
+                <p>Sign in to access signature forgery detection</p>
+            </div>
+
+            <div class="auth-form">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="admin1@signnasure.com" id="signin-email" required>
+                </div>
+                <div class="input-group">
+                    <div class="label-row">
+                        <label>Password</label>
+                        <a href="#" class="forgot-link">Forget Password</a>
+                    </div>
+                    <div class="password-wrapper">
+                        <input type="password" placeholder="Enter your password" id="signin-password" required>
+                        <span class="eye-icon">👁</span>
+                    </div>
+                </div>
+                <button type="button" class="btn-submit" id="signin-submit-btn">Sign In</button>
+            </div>
+            <div class="modal-footer">
+                Don't have an account? <a href="#" id="toSignUp">Sign Up for free</a>
+            </div>
+        </div>
+
+        <div class="modal-card hidden" id="signUpModal">
+            <button class="close-btn">&times;</button>
+            <div class="modal-header">
+                <div class="logo-placeholder">
+                    <span style="font-weight: 700; font-size: 24px; color: #111;">SN</span>
+                </div>
+                <h2>SIGN UP AN ACCOUNT</h2>
+                <p>Sign up to access signature forgery detection</p>
+            </div>
+
+            <div class="auth-form">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="Choose a username" id="signup-username" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="admin1@signnasure.com" id="signup-email" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" placeholder="Create a password" id="signup-password" required>
+                        <span class="eye-icon">👁</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" placeholder="Confirm your password" id="signup-confirm-password" required>
+                        <span class="eye-icon">👁</span>
+                    </div>
+                </div>
+                <button type="button" class="btn-submit" id="signup-submit-btn">Create Account</button>
+            </div>
+            <div class="modal-footer">
+                Already have an account? <a href="#" id="toSignIn">Sign In</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../BACKEND/signupPage.js"></script>
+    <script src="../BACKEND/login.js"></script>
+    <script src="../FUNCTIONALITIES/modal.js"></script>
+</body>
+</html>
