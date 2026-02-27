@@ -33,36 +33,21 @@
     <div class="container">
         <div class="section-header">
             <h1>Try Our Detection Tool</h1>
-            <p>Upload two signatures to compare and receive instant analysis results.</p>
+            <p>Upload a signature to check if it is real or forged.</p>
         </div>
 
         <div class="upload-grid">
 
-            <!-- ORIGINAL SIGNATURE -->
             <div class="upload-card">
-                <h3>Original Signature</h3>
-                <div class="upload-box" id="originalBox">
-                    <input type="file" id="originalInput" accept="image/*" hidden>
+                <h3>Signature to Analyze</h3>
+                <div class="upload-box" id="signatureBox">
+                    <input type="file" id="signatureInput" accept="image/*" hidden>
                     <div class="upload-content">
                         <p>Drop your signature image here</p>
                         <span>or click to browse</span>
                         <button type="button">Choose file</button>
                     </div>
-                    <img class="preview-image" id="originalPreview">
-                </div>
-            </div>
-
-            <!-- QUESTIONED SIGNATURE -->
-            <div class="upload-card">
-                <h3>Questioned Signature</h3>
-                <div class="upload-box" id="questionedBox">
-                    <input type="file" id="questionedInput" accept="image/*" hidden>
-                    <div class="upload-content">
-                        <p>Drop your signature image here</p>
-                        <span>or click to browse</span>
-                        <button type="button">Choose file</button>
-                    </div>
-                    <img class="preview-image" id="questionedPreview">
+                    <img class="preview-image" id="signaturePreview">
                 </div>
             </div>
 
@@ -70,6 +55,7 @@
 
         <div class="analyze-wrapper">
             <button class="analyze-btn" id="analyzeBtn">Analyze Signature</button>
+            <p id="analysisResult" class="analysis-result"></p>
         </div>
     </div>
 </section>

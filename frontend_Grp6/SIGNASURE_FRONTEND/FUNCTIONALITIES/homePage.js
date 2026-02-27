@@ -62,11 +62,41 @@ function setupUpload(boxId, inputId, previewId) {
     });
 }
 
-// Initialize both uploads
-setupUpload("originalBox", "originalInput", "originalPreview");
-setupUpload("questionedBox", "questionedInput", "questionedPreview");
+// Initialize single upload
+setupUpload("signatureBox", "signatureInput", "signaturePreview");
 
-// Fake analyze action
-document.getElementById("analyzeBtn").addEventListener("click", () => {
-    alert("Analysis feature will connect to AI backend here.");
+// Call AI backend to analyze signature
+document.getElementById("analyzeBtn").addEventListener("click", async () => {
+    const input = document.getElementById("signatureInput");
+    const resultEl = document.getElementById("analysisResult");
+
+    if (!input.files[0]) {
+        alert("Please upload a signature image first.");
+        return;
+    }
+
+    resultEl.textContent = "Analyzing...";
+
+    const formData = new FormData();
+    formData.append("file", input.files[0]);
+
+    try {
+        const response = await fetch("http://localhost:8000/predict", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (!response.ok) {
+            resultEl.textContent = "Error: could not reach AI server.";
+            return;
+        }
+
+        const data = await response.json();
+        const label = (data.label || "").toString().toUpperCase();
+        const score = typeof data.score === "number" ? data.score.toFixed(3) : data.score;
+
+        resultEl.textContent = `Prediction: ${label} (score: ${score})`;
+    } catch (err) {
+        resultEl.textContent = "Error: " + err.message;
+    }
 });
