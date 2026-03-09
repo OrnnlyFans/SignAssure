@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #f4f4f6, #e9ebf0);
-    color: #111;
+    background: #F8FAFC;
+    color: #0F172A;
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 
 /* ================= NAVBAR ================= */
 .navbar {
-    background: #111;
+    background: #0F172A;
     padding: 20px 0;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 .logo {
-    color: white;
+    color: #F8FAFC;
     font-weight: 700;
     text-decoration: none;
 }
@@ -41,13 +41,13 @@ body {
 }
 
 .nav-links a {
-    color: #ddd;
+    color: rgba(248, 250, 252, 0.8);
     text-decoration: none;
     transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: white;
+    color: #F8FAFC;
 }
 
 #nav-auth {
@@ -57,15 +57,21 @@ body {
 }
 
 .nav-username {
-    color: white;
-    font-weight: 500;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    letter-spacing: 0.02em;
 }
 
 .btn-outline {
     padding: 8px 18px;
     border-radius: 20px;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid rgba(248, 250, 252, 0.7);
+    color: #F8FAFC;
     text-decoration: none;
 }
 
@@ -88,7 +94,7 @@ body {
 }
 
 .section-header p {
-    color: #666;
+    color: #64748B;
     margin-top: 10px;
 }
 
@@ -102,12 +108,12 @@ body {
 
 .upload-card,
 .result-card {
-    background: white;
+    background: #FFFFFF;
     padding: 40px;
     border-radius: 24px;
-    box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+    box-shadow: 0 20px 48px rgba(15,23,42,0.08);
     min-height: 460px;
-    border: 1px solid rgba(0,0,0,0.06);
+    border: 1px solid rgba(148,163,184,0.35);
     position: relative;
 }
 
@@ -117,7 +123,7 @@ body {
 }
 
 .upload-box {
-    border: 2px dashed rgba(0,0,0,0.2);
+    border: 2px dashed rgba(148,163,184,0.6);
     border-radius: 22px;
     padding: 60px;
     min-height: 320px;
@@ -128,12 +134,12 @@ body {
     cursor: pointer;
     position: relative;
     transition: all 0.25s ease;
-    background: rgba(255,255,255,0.75);
+    background: rgba(248,250,252,0.85);
 }
 
 .upload-box:hover {
-    border-color: rgba(63, 81, 181, 0.6);
-    box-shadow: 0 18px 38px rgba(63, 81, 181, 0.12);
+    border-color: rgba(239, 68, 68, 0.7);
+    box-shadow: 0 18px 38px rgba(15,23,42,0.16);
 }
 
 .upload-content p {
@@ -144,7 +150,7 @@ body {
 
 .upload-content span {
     font-size: 0.95rem;
-    color: #555;
+    color: #64748B;
 }
 
 .upload-content button {
@@ -152,14 +158,14 @@ body {
     padding: 10px 18px;
     border-radius: 20px;
     border: none;
-    background: #3F51B5;
+    background: #EF4444;
     color: white;
     cursor: pointer;
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .upload-content button:hover {
-    background: #2f3ea1;
+    background: #DC2626;
     transform: translateY(-1px);
 }
 
@@ -209,13 +215,13 @@ body {
 
 .ring-bg {
     fill: none;
-    stroke: rgba(0,0,0,0.08);
+    stroke: rgba(148,163,184,0.35);
     stroke-width: 12;
 }
 
 .ring {
     fill: none;
-    stroke: #ffb300;
+    stroke: #EF4444;
     stroke-width: 12;
     stroke-linecap: round;
     stroke-dasharray: 326.7;
@@ -234,7 +240,7 @@ body {
 .progress-value span {
     font-size: 2rem;
     font-weight: 800;
-    color: #222;
+    color: #0F172A;
 }
 
 .result-text h4 {
@@ -243,7 +249,7 @@ body {
 }
 
 .result-text p {
-    color: #555;
+    color: #64748B;
     line-height: 1.6;
     max-height: 120px;
     overflow-y: auto;
@@ -254,8 +260,8 @@ body {
     width: 100%;
     padding: 12px 14px;
     border-radius: 28px;
-    border: 1px solid rgba(0,0,0,0.15);
-    background: #fff;
+    border: 1px solid rgba(148,163,184,0.5);
+    background: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -266,7 +272,7 @@ body {
 }
 
 .download-btn:hover:enabled {
-    background: rgba(63,81,181,0.08);
+    background: rgba(239,68,68,0.08);
     transform: translateY(-1px);
 }
 
@@ -289,8 +295,8 @@ body {
 /* Footer */
 .site-footer {
     padding: 24px 0;
-    background: rgba(17, 17, 17, 0.08);
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    background: #F8FAFC;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .footer-content {
@@ -300,18 +306,18 @@ body {
     flex-wrap: wrap;
     gap: 12px;
     font-size: 0.9rem;
-    color: #444;
+    color: #64748B;
 }
 
 .footer-links a {
-    color: #444;
+    color: #64748B;
     text-decoration: none;
     margin-left: 18px;
     transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-    color: #111;
+    color: #0F172A;
 }
 /* ANALYZE BUTTON */
 .analyze-wrapper {
@@ -323,8 +329,8 @@ body {
     padding: 12px 30px;
     border-radius: 25px;
     border: none;
-    background: black;
-    color: white;
+    background: #EF4444;
+    color: #F8FAFC;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;

@@ -1,11 +1,11 @@
 /* --- Global Reset & Base (Reusing from previous) --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #0F172A; overflow-x: hidden; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 /* ================= NAVBAR ================= */
 .navbar {
-    background: #111;
+    background: #0F172A;
     padding: 20px 0;
 }
 
@@ -16,7 +16,7 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
 }
 
 .logo {
-    color: white;
+    color: #F8FAFC;
     font-weight: 700;
     text-decoration: none;
 }
@@ -28,13 +28,13 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
 }
 
 .nav-links a {
-    color: #ddd;
+    color: rgba(248, 250, 252, 0.8);
     text-decoration: none;
     transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: white;
+    color: #F8FAFC;
 }
 
 #nav-auth {
@@ -44,22 +44,38 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
 }
 
 .nav-username {
-    color: white;
-    font-weight: 500;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    letter-spacing: 0.02em;
 }
 
 .btn-outline {
     padding: 8px 18px;
     border-radius: 20px;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid rgba(248, 250, 252, 0.7);
+    color: #F8FAFC;
     text-decoration: none;
 }
 
 /* --- How It Works Section --- */
 .how-it-works { padding: 120px 0; text-align: center; }
+
+/* Wrapper for "Everything You Need for Signature Authentication" + subtitle */
+.section-header {
+    max-width: 720px;
+    margin: 0 auto 80px;
+    padding: 40px 32px;
+    background: rgba(148, 163, 184, 0.08);
+    border-radius: 24px;
+}
+
 .section-header h1 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 800; }
-.section-header p { color: #888; max-width: 600px; margin: 0 auto 80px; }
+.section-header p { color: #64748B; max-width: 600px; margin: 0 auto; }
 
 /* --- Process Timeline Layout --- */
 .process-wrapper {
@@ -82,14 +98,14 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
     left: 12.5%;
     right: 12.5%;
     height: 2px;
-    background: #E0E0E0;
+    background: rgba(148, 163, 184, 0.4);
     z-index: 1;
 }
 
 .progress-fill {
     height: 100%;
     width: 0%; /* Animated via JS */
-    background: #3F51B5;
+    background: #EF4444;
     transition: width 1.5s ease-in-out;
 }
 
@@ -110,24 +126,26 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
 .step-circle {
     width: 80px;
     height: 80px;
-    background-color: #D9D9D9;
+    background-color: rgb(148, 163, 184);
     border-radius: 50%;
     margin-bottom: 30px;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 4px solid #fff;
-    box-shadow: 0 0 0 1px #E0E0E0;
+    box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.5);
 
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.6rem;
     font-weight: 700;
-    color: #1A202C;
+    color: #0F172A;
+    position: relative;
+    z-index: 3; /* ensure circles sit above horizontal line */
 }
 
 .step-item:hover .step-circle {
     transform: scale(1.15);
-    background-color: #3F51B5;
+    background-color: #EF4444;
 }
 
 .step-item h3 {
@@ -138,7 +156,7 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
 
 .step-item p {
     font-size: 0.85rem;
-    color: #777;
+    color: #64748B;
     line-height: 1.6;
     padding: 0 10px;
 }
@@ -150,16 +168,39 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
 }
 
 /* --- Technology Section --- */
-.technology-section { padding: 120px 0; background: #F9FAFB; }
+.technology-section {
+    padding: 120px 0;
+    background: #F8FAFC;
+    position: relative;
+    margin-top: 0px;
+}
+
+/* Transition divider between "How It Works" and Technology sections */
+.technology-section::before {
+    content: '';
+    position: absolute;
+    top: -32px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0),
+        rgba(148, 163, 184, 0.8),
+        rgba(239, 68, 68, 0.8),
+        rgba(148, 163, 184, 0.8),
+        rgba(15, 23, 42, 0)
+    );
+}
 .technology-section .section-title { font-size: 2.4rem; margin-bottom: 10px; }
 .technology-section .section-subtitle { color: #555; margin-bottom: 50px; max-width: 680px; }
 
 .tech-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.tech-card { background: white; border-radius: 18px; padding: 32px; box-shadow: 0 16px 30px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); transition: transform 0.25s ease, box-shadow 0.25s ease; }
-.tech-card:hover { transform: translateY(-6px); box-shadow: 0 22px 45px rgba(0,0,0,0.12); }
-.tech-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: #111; }
-.tech-card p { color: #555; line-height: 1.7; margin-bottom: 18px; }
-.tech-card ul { list-style: disc; padding-left: 20px; color: #555; }
+.tech-card { background: #FFFFFF; border-radius: 18px; padding: 32px; box-shadow: 0 16px 30px rgba(15,23,42,0.04); border: 1px solid rgba(148,163,184,0.35); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.tech-card:hover { transform: translateY(-6px); box-shadow: 0 22px 45px rgba(15,23,42,0.12); }
+.tech-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: #0F172A; }
+.tech-card p { color: #64748B; line-height: 1.7; margin-bottom: 18px; }
+.tech-card ul { list-style: disc; padding-left: 20px; color: #64748B; }
 .tech-card ul li { margin-bottom: 10px; line-height: 1.6; }
 
 @media (max-width: 992px) {
@@ -169,8 +210,8 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
 /* Footer */
 .site-footer {
     padding: 24px 0;
-    background: rgba(17, 17, 17, 0.08);
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    background: #F8FAFC;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .footer-content {
@@ -180,18 +221,18 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
     flex-wrap: wrap;
     gap: 12px;
     font-size: 0.9rem;
-    color: #444;
+    color: #64748B;
 }
 
 .footer-links a {
-    color: #444;
+    color: #64748B;
     text-decoration: none;
     margin-left: 18px;
     transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-    color: #111;
+    color: #0F172A;
 }
 
 .hero-image-img {
@@ -199,6 +240,6 @@ body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; ov
   max-width: 520px;
   height: auto;
   border-radius: 28px;
-  box-shadow: 0 18px 50px rgba(30, 58, 138, 0.15);
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.16);
   object-fit: cover;
 }
