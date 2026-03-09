@@ -1,12 +1,37 @@
 const express = require('express');
 const cors = require('cors');
-const { login } = require('./db');
+const { login, signup } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+
+app.post('/api/signup', async (req, res) => {
+  const { username, email, password } = req.body || {};
+
+  if (!username || !email || !password) {
+    return res
+      .status(400)
+      .json({ success: false, message: 'Username, email, and password are required.' });
+  }
+
+  try {
+    const result = await signup(username, email, password);
+
+    if (!result.success) {
+      return res.status(400).json(result);
+    }
+
+    return res.status(201).json(result);
+  } catch (err) {
+    console.error('Error during signup:', err);
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
+  }
+});
 
 app.post('/api/login', async (req, res) => {
   const { identifier, password } = req.body || {};

@@ -16,7 +16,8 @@
 
         <nav>
             <ul class="nav-links">
-                <li><a href="./homePage.html">Analyze Signature</a></li>
+                <li><a href="./landingPage.html">Home</a></li>
+                <li><a href="./homePage.html">Analyze</a></li>
                 <li><a href="./featuresPage.html">Features</a></li>
                 <li><a href="./howItWorksPage.html">How It Works</a></li>
             </ul>
@@ -39,8 +40,8 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="#" class="btn-primary open-sign-up">Get Started →</a>
-                <a href="#" class="btn-secondary">Learn More</a>
+                <a href="./landingPage.html?signin=1" class="btn-primary" id="getStartedBtn">Get Started →</a>
+                <a href="./featuresPage.html" class="btn-secondary" id="learnMoreBtn">Learn More</a>
             </div>
 
             <div class="features">
@@ -62,13 +63,20 @@
         </div>
 
         <div class="hero-image">
-            <div class="image-placeholder">
-                <span>AI Signature Scanner</span>
-            </div>
+            <img src="../DESIGNS/signature-scanner.png" alt="AI Signature Scanner" class="hero-image__img" />
         </div>
 
     </div>
 </section>
+
+   <footer class="site-footer">
+        <div class="container footer-content">
+            <span>© 2026 SignNaSure. All rights reserved.</span>
+            <div class="footer-links">
+            <span>All Rights Reserved | Terms and Conditions | Privacy Policy</span>
+            </div>
+        </div>
+    </footer>
 
     <!-- Modal Overlay -->
     <div class="modal-overlay" id="modalOverlay">
@@ -150,5 +158,27 @@
     <script src="../../../backend_Grp6/SIGNASURE_BACKEND/signupPage.js"></script>
     <script src="../../../backend_Grp6/SIGNASURE_BACKEND/login.js"></script>
     <script src="../FUNCTIONALITIES/modal.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const getStartedBtn = document.getElementById('getStartedBtn');
+            if (!getStartedBtn) return;
+
+            getStartedBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const user = window.SignaSureLogin && window.SignaSureLogin.getCurrentUser
+                    ? window.SignaSureLogin.getCurrentUser()
+                    : null;
+
+                if (user && user.username) {
+                    window.location.href = './homePage.html';
+                    return;
+                }
+
+                // Not logged in -> prompt sign in modal via URL param.
+                window.location.href = './landingPage.html?signin=1';
+            });
+        });
+    </script>
 </body>
 </html>

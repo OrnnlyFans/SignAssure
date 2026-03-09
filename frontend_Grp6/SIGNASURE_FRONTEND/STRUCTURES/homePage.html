@@ -17,7 +17,8 @@
 
         <nav>
             <ul class="nav-links">
-                <li><a href="./homePage.html">Analyze Signature</a></li>
+                <li><a href="./landingPage.html">Home</a></li>
+                <li><a href="./homePage.html">Analyze</a></li>
                 <li><a href="./featuresPage.html">Features</a></li>
                 <li><a href="./howItWorksPage.html">How It Works</a></li>
             </ul>
@@ -39,7 +40,7 @@
         <div class="upload-grid">
 
             <div class="upload-card">
-                <h3>Signature to Analyze</h3>
+                <h3>Upload Signature</h3>
                 <div class="upload-box" id="signatureBox">
                     <input type="file" id="signatureInput" accept="image/*" hidden>
                     <div class="upload-content">
@@ -51,14 +52,50 @@
                 </div>
             </div>
 
+            <div class="result-card" id="resultCard">
+                <div class="result-title">
+                    <h3>Chance of Forgery</h3>
+                    <p>The chance the signature is forged</p>
+                </div>
+
+                <div class="result-content">
+                    <div class="progress-ring" aria-label="Forgery likelihood">
+                        <svg width="150" height="150" viewBox="0 0 120 120">
+                            <circle class="ring-bg" cx="60" cy="60" r="52" />
+                            <circle class="ring" cx="60" cy="60" r="52" />
+                        </svg>
+                        <div class="progress-value">
+                            <span id="resultPercent">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="result-text">
+                        <h4 id="resultHeadline">Upload a signature to see the chance of forgery.</h4>
+                        <p id="resultDetail">The analysis result will appear here once the model has finished running.</p>
+                    </div>
+                </div>
+
+                <button class="download-btn" id="downloadReportBtn" disabled>
+                    Download Report
+                </button>
+            </div>
+
         </div>
 
         <div class="analyze-wrapper">
             <button class="analyze-btn" id="analyzeBtn">Analyze Signature</button>
-            <p id="analysisResult" class="analysis-result"></p>
         </div>
     </div>
 </section>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <span>© 2026 SignNaSure. All rights reserved.</span>
+            <div class="footer-links">
+            <span>All Rights Reserved | Terms and Conditions | Privacy Policy</span>
+            </div>
+        </div>
+    </footer>
 
     <!-- Modal Overlay -->
     <div class="modal-overlay" id="modalOverlay">

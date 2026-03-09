@@ -1,84 +1,65 @@
-// Simple signup logic that stores users in browser localStorage.
-// Data shape in localStorage:
-// key: "signaSureUsers"
-// value: JSON string of array: [{ username, email, password }, ...]
+// Signup helper that sends signup requests to the backend API.
+// The server stores users in MySQL (via /api/signup).
 
 (function () {
-  const STORAGE_KEY = 'signaSureUsers';
-
-  function loadUsers() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return [];
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (err) {
-      console.error('Failed to read users from localStorage:', err);
-      return [];
-    }
-  }
-
-  function saveUsers(users) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
-      return true;
-    } catch (err) {
-      console.error('Failed to save users to localStorage:', err);
-      return false;
-    }
-  }
+  const API_BASE = 'http://localhost:3000';
 
   /**
-   * Sign up a new user and store them in localStorage.
+   * Sign up a new user via the backend.
    * @param {{ username: string, email: string, password: string }} data
-   * @returns {{ success: boolean, message: string }}
+   * @returns {Promise<{ success: boolean, message: string, user?: { username: string, email: string } }>}
    */
-  function signup(data) {
+  async function signup(data) {
     if (!data || !data.username || !data.email || !data.password) {
       return { success: false, message: 'Username, email, and password are required.' };
     }
 
-    const username = String(data.username).trim();
-    const email = String(data.email).trim().toLowerCase();
-    const password = String(data.password);
+    const payload = {
+      username: String(data.username).trim(),
+      email: String(data.email).trim().toLowerCase(),
+      password: String(data.password),
+    };
 
-    if (!username || !email || !password) {
+    if (!payload.username || !payload.email || !payload.password) {
       return { success: false, message: 'All fields must be non-empty.' };
     }
 
-    const users = loadUsers();
+    try {
+      const response = await fetch(`${API_BASE}/api/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-    // Check if username or email already exists
-    const exists = users.some(
-      (u) =>
-        u.username.toLowerCase() === username.toLowerCase() ||
-        u.email.toLowerCase() === email
-    );
+      const result = await response.json();
 
-    if (exists) {
-      return { success: false, message: 'Username or email already exists.' };
+      if (!response.ok || !result.success) {
+        return {
+          success: false,
+          message: (result && result.message) || 'Failed to create account.',
+        };
+      }
+
+      return {
+        success: true,
+        message: result.message || 'Signup successful.',
+        user: {
+          username: result.user?.username,
+          email: result.user?.email,
+        },
+      };
+    } catch (err) {
+      console.error('Signup request failed:', err);
+      return { success: false, message: 'Unable to reach signup server.' };
     }
-
-    users.push({ username, email, password });
-
-    if (!saveUsers(users)) {
-      return { success: false, message: 'Failed to save user. Please try again.' };
-    }
-
-    return { success: true, message: 'Signup successful.' };
-  }
-
-  // Optional helper: clear all registered users (for debugging)
-  function clearAllUsers() {
-    localStorage.removeItem(STORAGE_KEY);
   }
 
   // Expose to global scope so you can call it from your pages:
-  // example: window.SignaSureSignup.signup({ username, email, password })
+  // example: await window.SignaSureSignup.signup({ username, email, password })
   window.SignaSureSignup = {
     signup,
-    loadUsers,
-    clearAllUsers,
   };
 })();
 
