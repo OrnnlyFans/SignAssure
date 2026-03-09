@@ -4,6 +4,7 @@ import numpy as np
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
+from pathlib import Path
 from tensorflow.keras.models import load_model
 
 
@@ -18,7 +19,9 @@ app.add_middleware(
 )
 
 
-model = load_model("signature_model.h5")
+base_dir = Path(__file__).resolve().parent
+model_path = base_dir / "signature_model.h5"
+model = load_model(model_path)
 
 
 def preprocess_image(image: Image.Image) -> np.ndarray:
