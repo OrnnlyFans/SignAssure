@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ---------- SIGN UP HANDLER ----------
     const signupBtn = document.getElementById('signup-submit-btn');
     if (signupBtn) {
-        signupBtn.addEventListener('click', function () {
+        signupBtn.addEventListener('click', async function () {
             const usernameInput = document.getElementById('signup-username');
             const emailInput = document.getElementById('signup-email');
             const passwordInput = document.getElementById('signup-password');
@@ -182,16 +182,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            const result = window.SignaSureSignup.signup({ username, email, password });
-            showMessage(result.message);
+            try {
+                const result = await window.SignaSureSignup.signup({ username, email, password });
+                showMessage(result.message);
 
-            if (result.success) {
-                // Clear fields and switch to sign in
-                usernameInput.value = '';
-                emailInput.value = '';
-                passwordInput.value = '';
-                confirmPasswordInput.value = '';
-                openSignIn();
+                if (result.success) {
+                    // Clear fields and switch to sign in
+                    usernameInput.value = '';
+                    emailInput.value = '';
+                    passwordInput.value = '';
+                    confirmPasswordInput.value = '';
+                    openSignIn();
+                }
+            } catch (err) {
+                console.error('Signup failed:', err);
+                showMessage('An unexpected error occurred during signup.');
             }
         });
     }
