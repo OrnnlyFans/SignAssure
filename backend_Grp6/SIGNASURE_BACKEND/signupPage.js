@@ -2,7 +2,7 @@
 // The server stores users in MySQL (via /api/signup).
 
 (function () {
-  const API_BASE = 'http://localhost:3000';
+  const API_BASE = 'http://localhost:5000';
 
   /**
    * Sign up a new user via the backend.

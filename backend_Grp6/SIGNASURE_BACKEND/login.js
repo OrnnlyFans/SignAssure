@@ -5,6 +5,7 @@
 
 (function () {
   const STORAGE_KEY = 'signaSureUsers';
+  const API_BASE = 'http://localhost:5000';
 
   function loadUsers() {
     try {
@@ -39,7 +40,7 @@
     const identifier = email || username;
 
     try {
-      const response = await fetch('http://localhost:3000/api/login', {
+      const response = await fetch(`${API_BASE}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
