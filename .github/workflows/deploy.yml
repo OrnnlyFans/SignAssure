@@ -21,6 +21,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+
           
-          local-dir: frontend_Grp6/
           server-dir: /htdocs/
