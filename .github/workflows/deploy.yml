@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   ftp-deploy:
@@ -19,5 +20,4 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: frontend_Grp6/    # <- deploy the CONTENTS of this folder
-          server-dir: /htdocs/        # <- directly into htdocs
+          server-dir: /htdocs/
